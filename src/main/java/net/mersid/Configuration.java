@@ -16,19 +16,16 @@ public class Configuration {
     // Config cannot open on same frame as chat menu, so do it next tick (or frame, but we don't need to be fast).
     private static boolean openConfigNextTick = false;
 
-    private IntegerSliderEntry slider = null;
-
     private Configuration()
     {
         // Set up builders, title, and category.
         configBuilder = ConfigBuilder.create();
         ConfigEntryBuilder configEntryBuilder = ConfigEntryBuilder.create();
-        ConfigCategory category = configBuilder.getOrCreateCategory("Toggle Sneak");
-        configBuilder.setTitle("ToggleSneak Config");
-        slider = configEntryBuilder.startIntSlider(I18n.translate("Slider"), 0, 0, 10).build();
-        slider.save();
+        ConfigCategory category = configBuilder.getOrCreateCategory("Category 1");
+        configBuilder.setTitle("Titles and stuff");
 
-        category.addEntry(slider);
+
+        category.addEntry(configEntryBuilder.startIntSlider(I18n.translate("Slider"), 0, 0, 10).build());
         OnTickCallback.EVENT.register(this::onTick);
     }
 
@@ -44,7 +41,6 @@ public class Configuration {
         {
             MinecraftClient.getInstance().openScreen(new Configuration().configBuilder.build());
             openConfigNextTick = false;
-            System.out.println(slider.getValue());
         }
     }
 }
