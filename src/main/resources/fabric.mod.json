@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "togglesneak",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Toggle Sneak",
+  "description": "Toggle sneak and sprint.",
   "authors": [
-    "Me!"
+    "Mersid",
+    "blaueszebra"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,11 +20,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.mersid.ToggleSneak"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "togglesneak.mixins.json"
   ],
 
   "depends": {

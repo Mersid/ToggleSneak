@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "net.fabricmc.example.mixin",
+  "package": "net.mersid.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ClientPlayerEntityMixin",
+    "InGameHudMixin"
   ],
   "client": [
-    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
