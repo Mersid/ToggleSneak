@@ -1,5 +1,6 @@
 package net.mersid;
 
+import javafx.scene.control.Slider;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
@@ -15,7 +16,7 @@ public class Configuration {
     // Config cannot open on same frame as chat menu, so do it next tick (or frame, but we don't need to be fast).
     private static boolean openConfigNextTick = false;
 
-    private final IntegerSliderEntry slider;
+    private IntegerSliderEntry slider = null;
 
     private Configuration()
     {
@@ -24,8 +25,8 @@ public class Configuration {
         ConfigEntryBuilder configEntryBuilder = ConfigEntryBuilder.create();
         ConfigCategory category = configBuilder.getOrCreateCategory("Toggle Sneak");
         configBuilder.setTitle("ToggleSneak Config");
-
         slider = configEntryBuilder.startIntSlider(I18n.translate("Slider"), 0, 0, 10).build();
+        slider.save();
 
         category.addEntry(slider);
         OnTickCallback.EVENT.register(this::onTick);
