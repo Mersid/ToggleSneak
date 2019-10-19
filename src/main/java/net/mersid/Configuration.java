@@ -42,6 +42,7 @@ public class Configuration {
             MinecraftClient.getInstance().openScreen(new Configuration().configBuilder.build());
             openConfigNextTick = false;
         }
+        System.out.println("Hi Jack!");
     }
 }
 
