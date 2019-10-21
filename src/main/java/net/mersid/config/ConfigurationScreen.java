@@ -1,22 +1,20 @@
-package net.mersid;
+package net.mersid.config;
 
-import javafx.scene.control.Slider;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry;
 import net.mersid.callbacks.OnTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.language.I18n;
 
-public class Configuration {
+public class ConfigurationScreen {
 
     private ConfigBuilder configBuilder;
 
     // Config cannot open on same frame as chat menu, so do it next tick (or frame, but we don't need to be fast).
     private static boolean openConfigNextTick = false;
 
-    private Configuration()
+    private ConfigurationScreen()
     {
         // Set up builders, title, and category.
         configBuilder = ConfigBuilder.create();
@@ -31,7 +29,7 @@ public class Configuration {
 
     public static void open()
     {
-        Configuration cfg = new Configuration();
+        ConfigurationScreen cfg = new ConfigurationScreen();
         openConfigNextTick = true;
     }
 
@@ -39,7 +37,7 @@ public class Configuration {
     {
         if (openConfigNextTick)
         {
-            MinecraftClient.getInstance().openScreen(new Configuration().configBuilder.build());
+            MinecraftClient.getInstance().openScreen(new ConfigurationScreen().configBuilder.build());
             openConfigNextTick = false;
         }
         System.out.println("Hi Jack!");
