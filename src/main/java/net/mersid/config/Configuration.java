@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import net.mersid.utils.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -84,6 +83,6 @@ public class Configuration {
 	 */
 	private <T> T tryLoad(JsonObject json, String key, T fallback)
 	{
-		
+
 	}
 }
