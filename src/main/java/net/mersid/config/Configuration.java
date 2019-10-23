@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Configuration {
-	Path savePath;
+	private Path savePath;
 
 	// Property names for json key-value pairs
 	private static final String
