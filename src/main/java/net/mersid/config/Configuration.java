@@ -1,9 +1,6 @@
 package net.mersid.config;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.*;
 import net.mersid.utils.FileUtils;
 
 import java.io.IOException;
@@ -30,13 +27,20 @@ public class Configuration {
 	public boolean toggleSneak = true;
 	public boolean toggleSprint = false;
 	public boolean flyBoost = false;
-	public float flyBoostFactor = 4.0F;
+	public double flyBoostFactor = 4.0D;
 	public int keyHoldTicks = 7;
 
 	public Configuration(Path path)
 	{
 		this.savePath = path;
-		//load(path);
+		load(path);
+
+		System.out.println(toggleSneak);
+		System.out.println(toggleSprint);
+		System.out.println(flyBoost);
+		System.out.println(flyBoostFactor);
+		System.out.println(keyHoldTicks);
+
 	}
 
 
@@ -65,24 +69,16 @@ public class Configuration {
 			String jsonString = Files.readString(path);
 			JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
 
+			toggleSneak = jsonObject.get(TOGGLE_SNEAK_KEY) == null ? toggleSneak : jsonObject.get(TOGGLE_SNEAK_KEY).getAsBoolean();
+			toggleSprint = jsonObject.get(TOGGLE_SPRINT_KEY) == null ? toggleSprint : jsonObject.get(TOGGLE_SPRINT_KEY).getAsBoolean();
+			flyBoost = jsonObject.get(FLY_BOOST_KEY) == null ? flyBoost : jsonObject.get(FLY_BOOST_KEY).getAsBoolean();
+			flyBoostFactor = jsonObject.get(FLY_BOOST_FACTOR_KEY) == null ? flyBoostFactor : jsonObject.get(FLY_BOOST_FACTOR_KEY).getAsDouble();
+			keyHoldTicks = jsonObject.get(KEY_HOLD_TICKS_KEY) == null ? keyHoldTicks : jsonObject.get(KEY_HOLD_TICKS_KEY).getAsInt();
 
 
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Tries to load a parameter from path. Will default to fallback param if no configuration element can be found.
-	 * @param json Json to load from.
-	 * @param key Key of the item to load
-	 * @param fallback Value to return if key is not found
-	 * @param <T> Return type
-	 * @return
-	 */
-	private <T> T tryLoad(JsonObject json, String key, T fallback)
-	{
-
 	}
 }
