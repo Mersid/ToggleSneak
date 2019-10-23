@@ -34,6 +34,7 @@ public class Configuration {
 	{
 		this.savePath = path;
 		load(path);
+		save(path);
 
 		System.out.println(toggleSneak);
 		System.out.println(toggleSprint);
