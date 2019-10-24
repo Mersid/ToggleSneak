@@ -2,8 +2,10 @@ package net.mersid;
 
 import net.fabricmc.api.ModInitializer;
 import net.mersid.callbacks.OnChatCallback;
+import net.mersid.callbacks.OnTickCallback;
 import net.mersid.config.Configuration;
 import net.mersid.config.ConfigurationScreen;
+import net.minecraft.client.MinecraftClient;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +20,7 @@ public class ToggleSneak implements ModInitializer {
 	public void onInitialize()
 	{
         OnChatCallback.EVENT.register(this::onChatMessage);
+        OnTickCallback.EVENT.register(this::onTick);
 		cfgPath = Paths.get("config", "ToggleSneak.json");
 		configuration = new Configuration(cfgPath);
 	}
@@ -28,5 +31,10 @@ public class ToggleSneak implements ModInitializer {
 		{
 			ConfigurationScreen.open();
 		}
+    }
+
+    private void onTick()
+    {
+	    
     }
 }

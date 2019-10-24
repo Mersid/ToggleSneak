@@ -19,8 +19,8 @@ public class ConfigurationScreen {
         // Set up builders, title, and category.
         configBuilder = ConfigBuilder.create();
         ConfigEntryBuilder configEntryBuilder = ConfigEntryBuilder.create();
-        ConfigCategory category = configBuilder.getOrCreateCategory("Category 1");
-        configBuilder.setTitle("Titles and stuff");
+        ConfigCategory category = configBuilder.getOrCreateCategory("Toggle Sneak");
+        configBuilder.setTitle("Configuration");
 
 
         category.addEntry(configEntryBuilder.startIntSlider(I18n.translate("Slider"), 0, 0, 10).build());
@@ -40,7 +40,6 @@ public class ConfigurationScreen {
             MinecraftClient.getInstance().openScreen(new ConfigurationScreen().configBuilder.build());
             openConfigNextTick = false;
         }
-        System.out.println("Hi Jack!");
     }
 }
 
