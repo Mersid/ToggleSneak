@@ -7,6 +7,9 @@ import net.mersid.callbacks.OnTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.language.I18n;
 
+/**
+ * An instance of the Configuration screen. Each opening will cause a memory leak, so be careful!
+ */
 public class ConfigurationScreen {
 
     private ConfigBuilder configBuilder;

@@ -41,31 +41,31 @@ public class InputModded extends Input {
 		if (this.pressingLeft = gameOptions.keyLeft.isPressed()) movementSideways++;
 		if (this.pressingRight = gameOptions.keyRight.isPressed()) movementSideways--;
 
-		jump = gameOptions.keyJump.isPressed();
+		jumping = gameOptions.keyJump.isPressed();
 
 		if (ZTS.config.toggleSneak) {
 			if (gameOptions.keySneak.isPressed()) {
 				if (sneakWasPressed == 0) {
-					if (sneak) {
+					if (sneaking) {
 						sneakWasPressed = -1;
-					} else if (player.isRidingHorse() || player.abilities.flying) {
+					} else if (player.isRiding() || player.abilities.flying) {
 						sneakWasPressed = ZTS.config.keyHoldTicks + 1;
 					} else {
 						sneakWasPressed = 1;
 					}
-					sneak = !sneak;
+					sneaking = !sneaking;
 				} else if (sneakWasPressed > 0){
 					sneakWasPressed++;
 				}
 			} else {
-				if ((ZTS.config.keyHoldTicks > 0) && (sneakWasPressed > ZTS.config.keyHoldTicks)) sneak = false;
+				if ((ZTS.config.keyHoldTicks > 0) && (sneakWasPressed > ZTS.config.keyHoldTicks)) sneaking = false;
 				sneakWasPressed = 0;
 			}
 		} else {
-			sneak = gameOptions.keySneak.isPressed();
+			sneaking = gameOptions.keySneak.isPressed();
 		}
 
-		if (sneak) {
+		if (sneaking) {
 			movementSideways *= 0.3F;
 			movementForward *= 0.3F;
 		}
@@ -105,11 +105,11 @@ public class InputModded extends Input {
 			player.abilities.setFlySpeed(boostedFlySpeed);
 
 			Vec3d motion = player.getMotion();
-			if (sneak)
+			if (sneaking)
 			{
 				player.setMotion(motion.x, motion.y - (0.15D * (double)(ZTS.config.flyBoostFactor - 1.0F)), motion.z);
 			}
-			if (jump)
+			if (jumping)
 			{
 				player.setMotion(motion.x, motion.y + (0.15D * (double)(ZTS.config.flyBoostFactor - 1.0F)), motion.z);
 			}
