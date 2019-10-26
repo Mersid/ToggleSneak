@@ -1,8 +1,10 @@
 package net.mersid;
 
+import net.mersid.callbacks.OnRenderCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 
-public class GuiDrawer extends AbstractGui {
+public class GuiDrawer extends DrawableHelper {
 
 	private final MinecraftClient mc = MinecraftClient.getInstance();
 	private final ToggleSneak ZTS;
@@ -18,6 +20,7 @@ public class GuiDrawer extends AbstractGui {
 		super();
 		ZTS = zTS;
 		MIM = mIM;
+		OnRenderCallback.EVENT.register(this::afterDraw);
 	}
 
 	public void setDrawPosition(String hPos, String vPos, String[] hPosOptions, String[] vPosOptions) {
@@ -32,10 +35,8 @@ public class GuiDrawer extends AbstractGui {
 		mcDisplayHeight = -1;
 	}
 
-	@SubscribeEvent
-	public void afterDraw (RenderGameOverlayEvent.Post event) {
+	public void afterDraw () {
 
-		if (event.getType() != ElementType.ALL) return;
 		if (ZTS.displayStatus() == 1) {
 			computeDrawPosIfChanged();
 			fill(x1, sneaky1, x2, sneaky2, ZTS.config.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));

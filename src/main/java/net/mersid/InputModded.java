@@ -4,6 +4,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.options.GameOptions;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.util.math.Vec3d;
 
 public class InputModded extends Input {
 	private final GameOptions gameOptions;
@@ -44,13 +47,13 @@ public class InputModded extends Input {
 
 		jumping = gameOptions.keyJump.isPressed();
 
-		if (ZTS.config.toggleSneak) {
+		if (ZTS.configuration.toggleSneak) {
 			if (gameOptions.keySneak.isPressed()) {
 				if (sneakWasPressed == 0) {
 					if (sneaking) {
 						sneakWasPressed = -1;
 					} else if (player.isRiding() || player.abilities.flying) {
-						sneakWasPressed = ZTS.config.keyHoldTicks + 1;
+						sneakWasPressed = ZTS.configuration.keyHoldTicks + 1;
 					} else {
 						sneakWasPressed = 1;
 					}
@@ -59,7 +62,7 @@ public class InputModded extends Input {
 					sneakWasPressed++;
 				}
 			} else {
-				if ((ZTS.config.keyHoldTicks > 0) && (sneakWasPressed > ZTS.config.keyHoldTicks)) sneaking = false;
+				if ((ZTS.configuration.keyHoldTicks > 0) && (sneakWasPressed > ZTS.configuration.keyHoldTicks)) sneaking = false;
 				sneakWasPressed = 0;
 			}
 		} else {
@@ -71,13 +74,13 @@ public class InputModded extends Input {
 			movementForward *= 0.3F;
 		}
 
-		if (ZTS.config.toggleSprint) {
+		if (ZTS.configuration.toggleSprint) {
 			if (gameOptions.keySprint.isPressed()) {
 				if (sprintWasPressed == 0) {
 					if (sprint) {
 						sprintWasPressed = -1;
 					} else if (player.abilities.flying) {
-						sprintWasPressed = ZTS.config.keyHoldTicks + 1;
+						sprintWasPressed = ZTS.configuration.keyHoldTicks + 1;
 					} else {
 						sprintWasPressed = 1;
 					}
@@ -86,7 +89,7 @@ public class InputModded extends Input {
 					sprintWasPressed++;
 				}
 			} else {
-				if ((ZTS.config.keyHoldTicks > 0) && (sprintWasPressed > ZTS.config.keyHoldTicks)) sprint = false;
+				if ((ZTS.configuration.keyHoldTicks > 0) && (sprintWasPressed > ZTS.configuration.keyHoldTicks)) sprint = false;
 				sprintWasPressed = 0;
 			}
 		} else sprint = false;
@@ -94,25 +97,25 @@ public class InputModded extends Input {
 		// sprint conditions same as in net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate()
 		// check for hungry or flying. But nvm, if conditions not met, sprint will
 		// be canceled there afterwards anyways
-		if (sprint && movementForward == 1.0F && player.onGround && !player.isHandActive()
-				&& !player.isPotionActive(Effects.BLINDNESS)) player.setSprinting(true);
+		if (sprint && movementForward == 1.0F && player.onGround && !player.isUsingItem()
+				&& !player.hasStatusEffect(StatusEffects.BLINDNESS)) player.setSprinting(true);
 
-		if (ZTS.config.flyBoost && player.abilities.isCreativeMode && player.abilities.flying
-				&& (mc.getRenderViewEntity() == player) && sprint) {
+		if (ZTS.configuration.flyBoost && player.abilities.creativeMode && player.abilities.flying
+				&& (mc.getCameraEntity() == player) && sprint) {
 
 			if (originalFlySpeed < 0.0F || this.player.abilities.getFlySpeed() != boostedFlySpeed)
 				originalFlySpeed = this.player.abilities.getFlySpeed();
-			boostedFlySpeed = originalFlySpeed * ZTS.config.flyBoostFactor;
+			boostedFlySpeed = originalFlySpeed * (float)ZTS.configuration.flyBoostFactor;
 			player.abilities.setFlySpeed(boostedFlySpeed);
 
-			Vec3d motion = player.getMotion();
+			Vec3d motion = player.getVelocity();
 			if (sneaking)
 			{
-				player.setMotion(motion.x, motion.y - (0.15D * (double)(ZTS.config.flyBoostFactor - 1.0F)), motion.z);
+				player.setVelocity(motion.x, motion.y - (0.15D * (double)(ZTS.configuration.flyBoostFactor - 1.0F)), motion.z);
 			}
 			if (jumping)
 			{
-				player.setMotion(motion.x, motion.y + (0.15D * (double)(ZTS.config.flyBoostFactor - 1.0F)), motion.z);
+				player.setVelocity(motion.x, motion.y + (0.15D * (double)(ZTS.configuration.flyBoostFactor - 1.0F)), motion.z);
 			}
 
 		} else {

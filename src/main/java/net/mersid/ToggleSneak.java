@@ -43,7 +43,9 @@ public class ToggleSneak implements ModInitializer {
     private void onTick()
     {
 	    if ((mc.player != null) && (!(mc.player.input instanceof InputModded))) {
-		    mc.player.input = inputM;
+		    //mc.player.input = inputM;
 	    }
     }
+
+    
 }
