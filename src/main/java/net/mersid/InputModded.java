@@ -11,7 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import java.text.DecimalFormat;
 
 public class InputModded extends Input {
-	private final GameOptions gameOptions;
+	private GameOptions gameOptions;
 	public boolean sprint;
 	private ToggleSneak ZTS;
 	private MinecraftClient mc;
@@ -23,24 +23,23 @@ public class InputModded extends Input {
 
 	public InputModded(GameOptions gameOptions, ToggleSneak ts)
 	{
-		this.gameOptions = gameOptions;
+		this.gameOptions = gameOptions; // Will be null. Options will be assigned in tick.
 		this.sprint = false;
 		this.ZTS = ts;
 		this.mc = MinecraftClient.getInstance(); // we'll need replace the static ref by a link passed as parameter
 		this.sneakWasPressed = 0;
 		this.sprintWasPressed = 0;
-
 	}
 
 
 	@Override
-
 	public void tick(boolean slow, boolean noDampening)
 	{
-
 		player = mc.player;
 		movementSideways = 0.0F;
 		movementForward = 0.0F;
+
+		this.gameOptions = mc.options;
 
 		if (this.pressingForward = gameOptions.keyForward.isPressed()) movementForward++;
 		if (this.pressingBack = gameOptions.keyBack.isPressed()) movementForward--;
