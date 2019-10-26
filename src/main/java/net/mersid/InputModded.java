@@ -8,6 +8,8 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.math.Vec3d;
 
+import java.text.DecimalFormat;
+
 public class InputModded extends Input {
 	private final GameOptions gameOptions;
 	public boolean sprint;
@@ -19,11 +21,11 @@ public class InputModded extends Input {
 	private float originalFlySpeed = -1.0F;
 	private float boostedFlySpeed;
 
-	public InputModded()
+	public InputModded(GameOptions gameOptions, ToggleSneak ts)
 	{
-		this.gameOptions = mc.options;
+		this.gameOptions = gameOptions;
 		this.sprint = false;
-		this.ZTS = ZTS;
+		this.ZTS = ts;
 		this.mc = MinecraftClient.getInstance(); // we'll need replace the static ref by a link passed as parameter
 		this.sneakWasPressed = 0;
 		this.sprintWasPressed = 0;
@@ -123,5 +125,42 @@ public class InputModded extends Input {
 				this.player.abilities.setFlySpeed(originalFlySpeed);
 			originalFlySpeed = -1.0F;
 		}
+	}
+
+
+	public String displayText() {
+
+		// This is a slightly refactored version of Deez's UpdateStatus( ... ) function
+		// found here https://github.com/DouweKoopmans/ToggleSneak/blob/master/src/main/java/deez/togglesneak/CustomMovementInput.java
+
+		String displayText = "";
+		boolean isFlying = mc.player.abilities.flying;
+		boolean isRiding = mc.player.isRiding();
+		boolean isHoldingSneak = gameOptions.keySneak.isPressed();
+		boolean isHoldingSprint = gameOptions.keySneak.isPressed();
+
+		if (isFlying) {
+			if (originalFlySpeed > 0.0F) {
+				displayText += "[Flying (" + (new DecimalFormat("#.0")).format(boostedFlySpeed/originalFlySpeed) + "x Boost)]  ";
+			} else {
+				displayText += "[Flying]  ";
+			}
+		}
+		if (isRiding) displayText += "[Riding]  ";
+
+		if (sneaking) {
+
+			if (isFlying) displayText += "[Descending]  ";
+			else if (isRiding) displayText += "[Dismounting]  ";
+			else if (isHoldingSneak) displayText += "[Sneaking (Key Held)]  ";
+			else displayText += "[Sneaking (Toggled)]  ";
+
+		} else if (sprint && !isFlying && !isRiding) {
+
+			if (isHoldingSprint) displayText += "[Sprinting (Key Held)]";
+			else displayText += "[Sprinting (Toggled)]";
+		}
+
+		return displayText.trim();
 	}
 }

@@ -20,7 +20,7 @@ public class ToggleSneak implements ModInitializer {
 	private List<KeyBinding> kbList;
 
 	private final MinecraftClient mc = MinecraftClient.getInstance();
-	private final InputModded mim = new InputModded(mc.gameSettings, this);
+	private final InputModded mim = new InputModded(mc.options, this);
 	public final GuiDrawer guiDrawer = new GuiDrawer(this, mim);
 
 	@Override
@@ -47,5 +47,5 @@ public class ToggleSneak implements ModInitializer {
 	    }
     }
 
-    
+
 }

@@ -3,6 +3,7 @@ package net.mersid;
 import net.mersid.callbacks.OnRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.util.Window;
 
 public class GuiDrawer extends DrawableHelper {
 
@@ -39,11 +40,11 @@ public class GuiDrawer extends DrawableHelper {
 
 		if (ZTS.displayStatus() == 1) {
 			computeDrawPosIfChanged();
-			fill(x1, sneaky1, x2, sneaky2, ZTS.config.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawString(mc.fontRenderer, sneakTxt, x1 + 2, sneaky1 + 2,
-					MIM.sneak?colorPack(255,255,0,96):colorPack(64,64,64,128));
-			fill(x1, sprinty1, x2, sprinty2, ZTS.config.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawString(mc.fontRenderer, sprintTxt, x1 + 2, sprinty1 + 2,
+			fill(x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
+			drawString(mc.textRenderer, sneakTxt, x1 + 2, sneaky1 + 2,
+					MIM.sneaking?colorPack(255,255,0,96):colorPack(64,64,64,128));
+			fill(x1, sprinty1, x2, sprinty2, ZTS.configuration.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
+			drawString(mc.textRenderer, sprintTxt, x1 + 2, sprinty1 + 2,
 					MIM.sprint?colorPack(255,255,0,96):colorPack(64,64,64,128));
 			/*
 			fill(2, 226, 6, 229, colorPack(0, 255, 20, 127));
@@ -59,19 +60,19 @@ public class GuiDrawer extends DrawableHelper {
 		} else if (ZTS.displayStatus() == 2) {
 			// no optimization here - I don't like the text only display anyway
 			computeTextPos(onlyTxt = MIM.displayText());
-			drawString(mc.fontRenderer, onlyTxt, x1, sneaky1, colorPack(255,255,255,192));
+			drawString(mc.textRenderer, onlyTxt, x1, sneaky1, colorPack(255,255,255,192));
 		}
 	}
 
 	public void computeDrawPosIfChanged() {
-		MainWindow screen = mc.;
+		Window screen = mc.window;
 		//if ((mcDisplayWidth == mc.displayWidth) && (mcDisplayHeight == mc.displayHeight)) return;
 		if ((mcDisplayWidth == screen.getScaledWidth()) && (mcDisplayHeight == screen.getScaledHeight())) return;
 		//System.out.println("rectX1: " + x1 + ", rectX2: " + x2 + ", recySnY1: " + sneaky1 + ", rectSnY2: " + sneaky2 + ", rectSpY1: " + sprinty1 + ", rectSpY2: " + sprinty2);
 		//System.out.println("screenX: " + screen.getWidth() + ", screenY: " + screen.getHeight());
 
 		int displayWidth = screen.getScaledWidth();
-		int textWidth = Math.max(mc.fontRenderer.getStringWidth(sprintTxt), mc.fontRenderer.getStringWidth(sneakTxt));
+		int textWidth = Math.max(mc.textRenderer.getStringWidth(sprintTxt), mc.textRenderer.getStringWidth(sneakTxt));
 		if (hPos.equals(hPosOptions[2])) {
 			x2 = displayWidth - 2;
 			x1 = x2 - 2 - textWidth - 2;
@@ -84,7 +85,7 @@ public class GuiDrawer extends DrawableHelper {
 		}
 
 		int displayHeight = screen.getScaledHeight();
-		int textHeight = mc.fontRenderer.FONT_HEIGHT;
+		int textHeight = mc.textRenderer.fontHeight;
 		if (vPos.equals(vPosOptions[2])) {
 			sprinty2 = displayHeight - 2;
 			sprinty1 = sprinty2 - 2 - textHeight - 2;
@@ -108,10 +109,10 @@ public class GuiDrawer extends DrawableHelper {
 
 	public void computeTextPos(String displayTxt) {
 
-		MainWindow screen = mc.mainWindow;
+		Window screen = mc.window;
 
 		int displayWidth = screen.getScaledWidth();
-		int textWidth = mc.fontRenderer.getStringWidth(displayTxt);
+		int textWidth = mc.textRenderer.getStringWidth(displayTxt);
 		if (hPos.equals(hPosOptions[2])) {
 			x1 = displayWidth - textWidth - 2;
 		} else if (hPos.equals(hPosOptions[1])) {
@@ -122,7 +123,7 @@ public class GuiDrawer extends DrawableHelper {
 		}
 
 		int displayHeight = screen.getScaledHeight();
-		int textHeight = mc.fontRenderer.FONT_HEIGHT;
+		int textHeight = mc.textRenderer.fontHeight;
 		if (vPos.equals(vPosOptions[2])) {
 			sneaky1 = displayHeight - 2;
 		} else if (vPos.equals(vPosOptions[1])) {
