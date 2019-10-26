@@ -12,9 +12,16 @@ import java.nio.file.Paths;
 
 public class ToggleSneak implements ModInitializer {
 
-	private boolean openConfigNextFrame = false;
 	public Configuration configuration;
 	private Path cfgPath;
+
+	private KeyBinding sneakBinding;
+	private KeyBinding sprintBinding;
+	private List<KeyBinding> kbList;
+
+	private final MinecraftClient mc = MinecraftClient.getInstance();
+	private final InputModded mim = new InputModded(mc.gameSettings, this);
+	public final GuiDrawer guiDrawer = new GuiDrawer(this, mim);
 
 	@Override
 	public void onInitialize()
@@ -35,6 +42,8 @@ public class ToggleSneak implements ModInitializer {
 
     private void onTick()
     {
-	    
+	    if ((mc.player != null) && (!(mc.player.input instanceof InputModded))) {
+		    mc.player.input = inputM;
+	    }
     }
 }
