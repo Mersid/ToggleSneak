@@ -24,6 +24,7 @@ public class InputModded extends Input {
 		this.mc = MinecraftClient.getInstance(); // we'll need replace the static ref by a link passed as parameter
 		this.sneakWasPressed = 0;
 		this.sprintWasPressed = 0;
+
 	}
 
 
