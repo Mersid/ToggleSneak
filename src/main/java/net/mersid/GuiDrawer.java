@@ -76,7 +76,7 @@ public class GuiDrawer extends DrawableHelper {
 	public void computeDrawPosIfChanged() {
 		Window screen = mc.window;
 		//if ((mcDisplayWidth == mc.displayWidth) && (mcDisplayHeight == mc.displayHeight)) return;
-		if ((mcDisplayWidth == screen.getScaledWidth()) && (mcDisplayHeight == screen.getScaledHeight())) return;
+		//if ((mcDisplayWidth == screen.getScaledWidth()) && (mcDisplayHeight == screen.getScaledHeight())) return;
 		//System.out.println("rectX1: " + x1 + ", rectX2: " + x2 + ", recySnY1: " + sneaky1 + ", rectSnY2: " + sneaky2 + ", rectSpY1: " + sprinty1 + ", rectSpY2: " + sprinty2);
 		//System.out.println("screenX: " + screen.getWidth() + ", screenY: " + screen.getHeight());
 
@@ -148,7 +148,7 @@ public class GuiDrawer extends DrawableHelper {
 		int textHeight = mc.textRenderer.fontHeight;
 		if (ZTS.configuration.vAnchor == Configuration.VAnchor.BOTTOM)
 		{
-			sneaky1 = displayHeight - 2;
+			sneaky1 = displayHeight - 12;
 		}
 		else if (ZTS.configuration.vAnchor == Configuration.VAnchor.CENTER)
 		{

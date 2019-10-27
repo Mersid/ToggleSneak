@@ -21,6 +21,7 @@ public class ToggleSneak implements ModInitializer {
 	private Path cfgPath;
 
 	// These keys set whether toggle for sneak/sprint is on or off.
+	private  FabricKeyBinding configBinding;
 	private FabricKeyBinding sneakBinding;
 	private FabricKeyBinding sprintBinding;
 	private boolean keybindPressed = false;
@@ -32,31 +33,29 @@ public class ToggleSneak implements ModInitializer {
 	@Override
 	public void onInitialize()
 	{
-        OnChatCallback.EVENT.register(this::onChatMessage);
         OnTickCallback.EVENT.register(this::onTick);
 		cfgPath = Paths.get("config", "ToggleSneak.json");
 		configuration = new Configuration(cfgPath);
 
+		configBinding = FabricKeyBinding.Builder.create(new Identifier("togglesneak", "config"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Toggle Sneak").build();
 		sneakBinding = FabricKeyBinding.Builder.create(new Identifier("togglesneak", "sneak"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Toggle Sneak").build();
 		sprintBinding = FabricKeyBinding.Builder.create(new Identifier("togglesneak", "sprint"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, "Toggle Sneak").build();
 
+		KeyBindingRegistry.INSTANCE.register(configBinding);
 		KeyBindingRegistry.INSTANCE.register(sneakBinding);
 		KeyBindingRegistry.INSTANCE.register(sprintBinding);
 	}
-
-	private void onChatMessage(String message)
-    {
-        if (message.equals("zts"))
-		{
-			ConfigurationScreen.open();
-		}
-    }
 
     private void onTick()
     {
 	    if ((mc.player != null) && (!(mc.player.input instanceof InputModded))) {
 		    mc.player.input = mim;
 	    }
+
+		if (configBinding.isPressed())
+		{
+			MinecraftClient.getInstance().openScreen(new ConfigurationScreen(this).configBuilder.build());
+		}
 
 	    if (sneakBinding.isPressed())
 	    {

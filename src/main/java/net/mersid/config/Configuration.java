@@ -29,9 +29,9 @@ public class Configuration {
 
 	// All equals are default values; they will remain so only if not overwritten at loadtime.
 	public boolean toggleSneak = true;
-	public boolean toggleSprint = false;
-	public boolean flyBoost = false;
-	public double flyBoostFactor = 4.0D;
+	public boolean toggleSprint = true;
+	public boolean flyBoost = true;
+	public double flyBoostFactor = 10.0D;
 	public int keyHoldTicks = 7;
 	public DisplayStyle displayStyle = DisplayStyle.COLOR_CODED;
 	public HAnchor hAnchor = HAnchor.LEFT;
