@@ -1,5 +1,6 @@
 package net.mersid;
 
+import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.mersid.callbacks.OnRenderCallback;
 import net.mersid.config.Configuration;
 import net.minecraft.client.MinecraftClient;
@@ -14,21 +15,24 @@ public class GuiDrawer extends DrawableHelper {
 	private int mcDisplayWidth = -1, mcDisplayHeight = -1;
 	private int x1, x2;
 	private int sneaky1, sneaky2, sprinty1, sprinty2;
-	private String hPos, vPos;
-	private String[] hPosOptions, vPosOptions;
+	//private String hPos, vPos;
+	//private String[] hPosOptions, vPosOptions;
 	private String sprintTxt, sneakTxt, onlyTxt;
 
 	public GuiDrawer(ToggleSneak zTS, InputModded mIM) {
 		super();
 		ZTS = zTS;
 		MIM = mIM;
+		sprintTxt = "sprint";
+		sneakTxt = "sneak";
+
 		OnRenderCallback.EVENT.register(this::afterDraw);
 	}
 
 	public void setDrawPosition(String hPos, String vPos, String[] hPosOptions, String[] vPosOptions) {
 		//System.out.println("HPOS: " + hPos + ", VPOS: " + vPos + ", HPOSOPTS: " + hPosOptions.toString() + ", VPOSOPTS: " + vPosOptions.toString());
-		this.hPos = hPos; this.vPos = vPos;
-		this.hPosOptions = hPosOptions; this.vPosOptions = vPosOptions;
+		//this.hPos = hPos; this.vPos = vPos;
+		//this.hPosOptions = hPosOptions; this.vPosOptions = vPosOptions;
 		//sprintTxt = I18n.format("zebrastogglesneak.display.label.sprint");
 		//sneakTxt = I18n.format("zebrastogglesneak.display.label.sneak");
 		sprintTxt = "sprint";
@@ -78,25 +82,35 @@ public class GuiDrawer extends DrawableHelper {
 
 		int displayWidth = screen.getScaledWidth();
 		int textWidth = Math.max(mc.textRenderer.getStringWidth(sprintTxt), mc.textRenderer.getStringWidth(sneakTxt));
-		if (hPos.equals(hPosOptions[2])) {
+
+		if (ZTS.configuration.hAnchor == Configuration.HAnchor.RIGHT)
+		{
 			x2 = displayWidth - 2;
 			x1 = x2 - 2 - textWidth - 2;
-		} else if (hPos.equals(hPosOptions[1])) {
+		}
+		else if (ZTS.configuration.hAnchor == Configuration.HAnchor.CENTER)
+		{
 			x1 = (displayWidth / 2) - (textWidth / 2) - 2;
 			x2 = x1 + 2 + textWidth + 2;
-		} else {
+		}
+		else
+		{
 			x1 = 2;
 			x2 = x1 + 2 + textWidth + 2;
 		}
 
 		int displayHeight = screen.getScaledHeight();
 		int textHeight = mc.textRenderer.fontHeight;
-		if (vPos.equals(vPosOptions[2])) {
+
+		if (ZTS.configuration.vAnchor == Configuration.VAnchor.BOTTOM)
+		{
 			sprinty2 = displayHeight - 2;
 			sprinty1 = sprinty2 - 2 - textHeight - 2;
 			sneaky2 = sprinty1 - 2;
 			sneaky1 = sneaky2 - 2 - textHeight - 2;
-		} else if (vPos.equals(vPosOptions[1])) {
+		}
+		else if (ZTS.configuration.vAnchor == Configuration.VAnchor.CENTER)
+		{
 			sneaky1 = (displayHeight / 2) - 1 - 2 - textHeight - 2;
 			sneaky2 = sneaky1 + 2 + textHeight + 2;
 			sprinty1 = sneaky2 + 2;
@@ -118,9 +132,12 @@ public class GuiDrawer extends DrawableHelper {
 
 		int displayWidth = screen.getScaledWidth();
 		int textWidth = mc.textRenderer.getStringWidth(displayTxt);
-		if (hPos.equals(hPosOptions[2])) {
+		if (ZTS.configuration.hAnchor == Configuration.HAnchor.RIGHT)
+		{
 			x1 = displayWidth - textWidth - 2;
-		} else if (hPos.equals(hPosOptions[1])) {
+		}
+		else if (ZTS.configuration.hAnchor == Configuration.HAnchor.CENTER)
+		{
 			x1 = (displayWidth / 2) - (textWidth / 2) - 2;
 		} else {
 			x1 = 2;
@@ -129,9 +146,12 @@ public class GuiDrawer extends DrawableHelper {
 
 		int displayHeight = screen.getScaledHeight();
 		int textHeight = mc.textRenderer.fontHeight;
-		if (vPos.equals(vPosOptions[2])) {
+		if (ZTS.configuration.vAnchor == Configuration.VAnchor.BOTTOM)
+		{
 			sneaky1 = displayHeight - 2;
-		} else if (vPos.equals(vPosOptions[1])) {
+		}
+		else if (ZTS.configuration.vAnchor == Configuration.VAnchor.CENTER)
+		{
 			sneaky1 = (displayHeight / 2) + textHeight/2;
 		} else {
 			sneaky1 = 2 + textHeight;

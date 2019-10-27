@@ -140,7 +140,7 @@ public class InputModded extends Input {
 		boolean isFlying = mc.player.abilities.flying;
 		boolean isRiding = mc.player.isRiding();
 		boolean isHoldingSneak = gameOptions.keySneak.isPressed();
-		boolean isHoldingSprint = gameOptions.keySneak.isPressed();
+		boolean isHoldingSprint = gameOptions.keySprint.isPressed();
 
 		if (isFlying) {
 			if (originalFlySpeed > 0.0F) {
