@@ -8,7 +8,6 @@ import net.mersid.callbacks.OnTickCallback;
 import net.mersid.config.Configuration;
 import net.mersid.config.ConfigurationScreen;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.MinecraftClientGame;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -38,8 +37,8 @@ public class ToggleSneak implements ModInitializer {
 		cfgPath = Paths.get("config", "ToggleSneak.json");
 		configuration = new Configuration(cfgPath);
 
-		sneakBinding = FabricKeyBinding.Builder.create(new Identifier("abc"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Toggle Sneak").build();
-		sprintBinding = FabricKeyBinding.Builder.create(new Identifier("def"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, "Toggle Sprint").build();
+		sneakBinding = FabricKeyBinding.Builder.create(new Identifier("togglesneak", "sneak"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Toggle Sneak").build();
+		sprintBinding = FabricKeyBinding.Builder.create(new Identifier("togglesneak", "sprint"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, "Toggle Sneak").build();
 
 		KeyBindingRegistry.INSTANCE.register(sneakBinding);
 		KeyBindingRegistry.INSTANCE.register(sprintBinding);
@@ -65,6 +64,8 @@ public class ToggleSneak implements ModInitializer {
 		    {
 			    configuration.toggleSneak = !configuration.toggleSneak;
 		    	keybindPressed = true;
+				configuration.save();
+				configuration.load();
 		    }
 	    }
 	    else if (sprintBinding.isPressed())
@@ -73,6 +74,8 @@ public class ToggleSneak implements ModInitializer {
 		    {
 			    configuration.toggleSprint = !configuration.toggleSprint;
 			    keybindPressed = true;
+			    configuration.save();
+			    configuration.load();
 		    }
 	    }
 	    else
@@ -80,10 +83,4 @@ public class ToggleSneak implements ModInitializer {
 			keybindPressed = false;
 	    }
     }
-	public int displayStatus() {/*
-		for (int i=0; i < configuration.statusDisplayOpts.length; i++)
-			if (configuration.statusDisplayOpts[i].equals(configuration.statusDisplay)) return i;*/
-		return 0;
-	}
-
 }

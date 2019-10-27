@@ -1,6 +1,7 @@
 package net.mersid;
 
 import net.mersid.callbacks.OnRenderCallback;
+import net.mersid.config.Configuration;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.Window;
@@ -38,7 +39,9 @@ public class GuiDrawer extends DrawableHelper {
 
 	public void afterDraw () {
 
-		if (ZTS.displayStatus() == 1) {
+		//if (ZTS.displayStatus() == 1) {
+		if (ZTS.configuration.displayStyle == Configuration.DisplayStyle.COLOR_CODED)
+		{
 			computeDrawPosIfChanged();
 			fill(x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
 			drawString(mc.textRenderer, sneakTxt, x1 + 2, sneaky1 + 2,
@@ -57,7 +60,9 @@ public class GuiDrawer extends DrawableHelper {
 					);
 			System.out.println(mc.mainWindow.getGuiScaleFactor());
 			*/
-		} else if (ZTS.displayStatus() == 2) {
+		}
+		else if (ZTS.configuration.displayStyle == Configuration.DisplayStyle.TEXT_ONLY)
+		{
 			// no optimization here - I don't like the text only display anyway
 			computeTextPos(onlyTxt = MIM.displayText());
 			drawString(mc.textRenderer, onlyTxt, x1, sneaky1, colorPack(255,255,255,192));

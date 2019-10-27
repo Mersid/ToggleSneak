@@ -4,7 +4,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.options.GameOptions;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.math.Vec3d;
 
@@ -93,7 +92,11 @@ public class InputModded extends Input {
 				if ((ZTS.configuration.keyHoldTicks > 0) && (sprintWasPressed > ZTS.configuration.keyHoldTicks)) sprint = false;
 				sprintWasPressed = 0;
 			}
-		} else sprint = false;
+		}
+		else
+		{
+			sprint = false;
+		}
 
 		// sprint conditions same as in net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate()
 		// check for hungry or flying. But nvm, if conditions not met, sprint will
@@ -133,6 +136,7 @@ public class InputModded extends Input {
 		// found here https://github.com/DouweKoopmans/ToggleSneak/blob/master/src/main/java/deez/togglesneak/CustomMovementInput.java
 
 		String displayText = "";
+		this.gameOptions = mc.options;
 		boolean isFlying = mc.player.abilities.flying;
 		boolean isRiding = mc.player.isRiding();
 		boolean isHoldingSneak = gameOptions.keySneak.isPressed();

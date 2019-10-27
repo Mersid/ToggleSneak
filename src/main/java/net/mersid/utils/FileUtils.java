@@ -1,8 +1,7 @@
 package net.mersid.utils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public final class FileUtils {
@@ -24,5 +23,20 @@ public final class FileUtils {
 			System.out.println("Error while saving!");
 			e.printStackTrace();
 		}
+	}
+
+	public static String read(Path path)
+	{
+		try
+		{
+			byte[] bytes = Files.readAllBytes(path);
+			return new String(bytes);
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error while reading file!");
+			e.printStackTrace();
+		}
+		return "";
 	}
 }
