@@ -1,8 +1,8 @@
-package net.mersid.mixins;
+package net.mersid.togglesneak.mixins;
 
 import com.mojang.authlib.GameProfile;
-import net.mersid.callbacks.OnChatCallback;
-import net.mersid.callbacks.OnTickCallback;
+import net.mersid.togglesneak.callbacks.OnChatCallback;
+import net.mersid.togglesneak.callbacks.OnTickCallback;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;

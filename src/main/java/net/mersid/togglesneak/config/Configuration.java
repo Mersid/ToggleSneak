@@ -1,14 +1,12 @@
-package net.mersid.config;
+package net.mersid.togglesneak.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import net.mersid.utils.FileUtils;
+import net.mersid.togglesneak.utils.FileUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Configuration {

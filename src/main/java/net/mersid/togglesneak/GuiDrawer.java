@@ -1,8 +1,7 @@
-package net.mersid;
+package net.mersid.togglesneak;
 
-import net.fabricmc.fabric.api.event.client.ClientTickCallback;
-import net.mersid.callbacks.OnRenderCallback;
-import net.mersid.config.Configuration;
+import net.mersid.togglesneak.callbacks.OnRenderCallback;
+import net.mersid.togglesneak.config.Configuration;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.Window;

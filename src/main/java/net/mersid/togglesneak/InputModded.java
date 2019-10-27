@@ -1,4 +1,4 @@
-package net.mersid;
+package net.mersid.togglesneak;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;

@@ -5,9 +5,9 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package net.mersid.mixins;
+package net.mersid.togglesneak.mixins;
 
-import net.mersid.callbacks.OnRenderCallback;
+import net.mersid.togglesneak.callbacks.OnRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;

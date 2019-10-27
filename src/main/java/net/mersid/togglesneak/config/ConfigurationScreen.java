@@ -1,15 +1,9 @@
-package net.mersid.config;
+package net.mersid.togglesneak.config;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.mersid.ToggleSneak;
-import net.mersid.callbacks.OnTickCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.resource.language.I18n;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import net.mersid.togglesneak.ToggleSneak;
 
 /**
  * An instance of the Configuration screen. Each opening will cause a memory leak, so be careful!

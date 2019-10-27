@@ -1,4 +1,4 @@
-package net.mersid.callbacks;
+package net.mersid.togglesneak.callbacks;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.mersid.ToggleSneak"
+      "net.mersid.togglesneak.ToggleSneak"
     ]
   },
   "mixins": [

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.mersid.mixins",
+  "package": "net.mersid.togglesneak.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ClientPlayerEntityMixin",

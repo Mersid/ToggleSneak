@@ -1,12 +1,11 @@
-package net.mersid;
+package net.mersid.togglesneak;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
-import net.mersid.callbacks.OnChatCallback;
-import net.mersid.callbacks.OnTickCallback;
-import net.mersid.config.Configuration;
-import net.mersid.config.ConfigurationScreen;
+import net.mersid.togglesneak.callbacks.OnTickCallback;
+import net.mersid.togglesneak.config.Configuration;
+import net.mersid.togglesneak.config.ConfigurationScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
