@@ -10,8 +10,7 @@
     "blaueszebra"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Mersid/ToggleSneak-1.14.4"
   },
 
   "license": "CC0-1.0",

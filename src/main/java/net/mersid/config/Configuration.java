@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import net.mersid.utils.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,6 +77,8 @@ public class Configuration {
 
 	private void load(Path path)
 	{
+		// Check if the file exists. If not, save (which has the effect right now of saving all default values)
+		if (!new File(path.toString()).exists()) save();
 
 		// Load JsonObject from file
 		String jsonString = FileUtils.read(path);
