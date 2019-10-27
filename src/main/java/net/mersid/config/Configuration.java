@@ -44,6 +44,7 @@ public class Configuration {
 		load(path);
 		save(path);
 
+		/*
 		System.out.println(toggleSneak);
 		System.out.println(toggleSprint);
 		System.out.println(flyBoost);
@@ -52,6 +53,7 @@ public class Configuration {
 		System.out.println(displayStyle);
 		System.out.println(hAnchor);
 		System.out.println(vAnchor);
+		 */
 	}
 
 
