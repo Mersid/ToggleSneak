@@ -32,7 +32,7 @@ public class InputModded extends Input {
 
 
 	@Override
-	public void tick(boolean slow, boolean noDampening)
+	public void tick(boolean slow)
 	{
 		player = mc.player;
 		movementSideways = 0.0F;

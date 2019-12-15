@@ -73,7 +73,7 @@ public class GuiDrawer extends DrawableHelper {
 	}
 
 	public void computeDrawPosIfChanged() {
-		Window screen = mc.window;
+		Window screen = mc.getWindow();
 		//if ((mcDisplayWidth == mc.displayWidth) && (mcDisplayHeight == mc.displayHeight)) return;
 		//if ((mcDisplayWidth == screen.getScaledWidth()) && (mcDisplayHeight == screen.getScaledHeight())) return;
 		//System.out.println("rectX1: " + x1 + ", rectX2: " + x2 + ", recySnY1: " + sneaky1 + ", rectSnY2: " + sneaky2 + ", rectSpY1: " + sprinty1 + ", rectSpY2: " + sprinty2);
@@ -127,7 +127,7 @@ public class GuiDrawer extends DrawableHelper {
 
 	public void computeTextPos(String displayTxt) {
 
-		Window screen = mc.window;
+		Window screen = mc.getWindow();
 
 		int displayWidth = screen.getScaledWidth();
 		int textWidth = mc.textRenderer.getStringWidth(displayTxt);

@@ -20,9 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class IngameHudMixin extends DrawableHelper
 {
 	@Inject(at = {@At(value = "INVOKE",
-		target = "Lcom/mojang/blaze3d/platform/GlStateManager;enableBlend()V",
-		ordinal = 4)}, method = {"render(F)V"})
-	//@Inject(at = @At(value = "HEAD", target = "net/minecraft/client/gui/hud/InGameHud;", ordinal = 0), method = "render()V")
+			target = "Lcom/mojang/blaze3d/systems/RenderSystem;enableBlend()V",
+			ordinal = 4)}, method = {"render(F)V"})
 	private void onRender(float partialTicks, CallbackInfo ci)
 	{
 		if(MinecraftClient.getInstance().options.debugEnabled)
