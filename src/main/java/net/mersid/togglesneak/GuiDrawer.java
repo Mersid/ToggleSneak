@@ -48,10 +48,10 @@ public class GuiDrawer extends DrawableHelper {
 			computeDrawPosIfChanged();
 			fill(x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
 			drawString(mc.textRenderer, sneakTxt, x1 + 2, sneaky1 + 2,
-					MIM.sneaking?colorPack(255,255,0,96):colorPack(64,64,64,128));
+					MIM.sneaking?colorPack(255,255,0,255):colorPack(64,64,64,128));
 			fill(x1, sprinty1, x2, sprinty2, ZTS.configuration.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
 			drawString(mc.textRenderer, sprintTxt, x1 + 2, sprinty1 + 2,
-					MIM.sprint?colorPack(255,255,0,96):colorPack(64,64,64,128));
+					MIM.sprint?colorPack(255,255,0,255):colorPack(64,64,64,128));
 			/*
 			fill(2, 226, 6, 229, colorPack(0, 255, 20, 127));
 			fill(
