@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.mersid.togglesneak.callbacks.OnTickCallback;
 import net.mersid.togglesneak.config.Configuration;
-import net.mersid.togglesneak.config.ConfigurationScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
@@ -53,7 +52,7 @@ public class ToggleSneak implements ModInitializer {
 
 		if (configBinding.isPressed())
 		{
-			MinecraftClient.getInstance().openScreen(new ConfigurationScreen(this).configBuilder.build());
+			//MinecraftClient.getInstance().openScreen(new ConfigurationScreen(this).configBuilder.build());
 		}
 
 	    if (sneakBinding.isPressed())

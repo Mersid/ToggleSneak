@@ -5,6 +5,7 @@ import net.mersid.togglesneak.config.Configuration;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.Window;
+import net.minecraft.client.util.math.MatrixStack;
 
 public class GuiDrawer extends DrawableHelper {
 
@@ -40,18 +41,19 @@ public class GuiDrawer extends DrawableHelper {
 		mcDisplayHeight = -1;
 	}
 
-	public void afterDraw () {
+	public void afterDraw(MatrixStack matrixStack, float partialTicks) {
 
 		//if (ZTS.displayStatus() == 1) {
 		if (ZTS.configuration.displayStyle == Configuration.DisplayStyle.COLOR_CODED)
 		{
 			computeDrawPosIfChanged();
-			fill(x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawString(mc.textRenderer, sneakTxt, x1 + 2, sneaky1 + 2,
+			fill(matrixStack, x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
+			drawCenteredString(matrixStack, mc.textRenderer, sneakTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1 + 2,
 					MIM.sneaking?colorPack(255,255,0,255):colorPack(64,64,64,128));
-			fill(x1, sprinty1, x2, sprinty2, ZTS.configuration.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawString(mc.textRenderer, sprintTxt, x1 + 2, sprinty1 + 2,
+			fill(matrixStack, x1, sprinty1, x2, sprinty2, ZTS.configuration.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
+			drawCenteredString(matrixStack, mc.textRenderer, sprintTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sprinty1 + 2,
 					MIM.sprint?colorPack(255,255,0,255):colorPack(64,64,64,128));
+
 			/*
 			fill(2, 226, 6, 229, colorPack(0, 255, 20, 127));
 			fill(
@@ -68,7 +70,7 @@ public class GuiDrawer extends DrawableHelper {
 		{
 			// no optimization here - I don't like the text only display anyway
 			computeTextPos(onlyTxt = MIM.displayText());
-			drawString(mc.textRenderer, onlyTxt, x1, sneaky1, colorPack(255,255,255,192));
+			drawCenteredString(matrixStack, mc.textRenderer, onlyTxt, x1 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1, colorPack(255,255,255,192));
 		}
 	}
 
