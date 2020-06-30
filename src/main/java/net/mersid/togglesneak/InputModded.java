@@ -101,7 +101,7 @@ public class InputModded extends Input {
 		// sprint conditions same as in net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate()
 		// check for hungry or flying. But nvm, if conditions not met, sprint will
 		// be canceled there afterwards anyways
-		if (sprint && movementForward == 1.0F && player.onGround && !player.isUsingItem()
+		if (sprint && movementForward == 1.0F && player.isOnGround() && !player.isUsingItem()
 				&& !player.hasStatusEffect(StatusEffects.BLINDNESS)) player.setSprinting(true);
 
 		if (ZTS.configuration.flyBoost && player.abilities.creativeMode && player.abilities.flying

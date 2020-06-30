@@ -80,7 +80,7 @@ public class GuiDrawer extends DrawableHelper {
 		//System.out.println("screenX: " + screen.getWidth() + ", screenY: " + screen.getHeight());
 
 		int displayWidth = screen.getScaledWidth();
-		int textWidth = Math.max(mc.textRenderer.getStringWidth(sprintTxt), mc.textRenderer.getStringWidth(sneakTxt));
+		int textWidth = Math.max(mc.textRenderer.getWidth(sprintTxt), mc.textRenderer.getWidth(sneakTxt));
 
 		if (ZTS.configuration.hAnchor == Configuration.HAnchor.RIGHT)
 		{
@@ -130,7 +130,7 @@ public class GuiDrawer extends DrawableHelper {
 		Window screen = mc.getWindow();
 
 		int displayWidth = screen.getScaledWidth();
-		int textWidth = mc.textRenderer.getStringWidth(displayTxt);
+		int textWidth = mc.textRenderer.getWidth(displayTxt);
 		if (ZTS.configuration.hAnchor == Configuration.HAnchor.RIGHT)
 		{
 			x1 = displayWidth - textWidth - 2;
