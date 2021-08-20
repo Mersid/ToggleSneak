@@ -48,10 +48,10 @@ public class GuiDrawer extends DrawableHelper {
 		{
 			computeDrawPosIfChanged();
 			fill(matrixStack, x1, sneaky1, x2, sneaky2, ZTS.configuration.toggleSneak?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawCenteredString(matrixStack, mc.textRenderer, sneakTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1 + 2,
+			drawCenteredText(matrixStack, mc.textRenderer, sneakTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1 + 2,
 					MIM.sneaking?colorPack(255,255,0,255):colorPack(64,64,64,128));
 			fill(matrixStack, x1, sprinty1, x2, sprinty2, ZTS.configuration.toggleSprint?colorPack(0,0,196,196):colorPack(196,196,196,64));
-			drawCenteredString(matrixStack, mc.textRenderer, sprintTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sprinty1 + 2,
+			drawCenteredText(matrixStack, mc.textRenderer, sprintTxt, x1 + 2 + (mc.textRenderer.getWidth(sneakTxt) / 2), sprinty1 + 2,
 					MIM.sprint?colorPack(255,255,0,255):colorPack(64,64,64,128));
 
 			/*
@@ -70,7 +70,7 @@ public class GuiDrawer extends DrawableHelper {
 		{
 			// no optimization here - I don't like the text only display anyway
 			computeTextPos(onlyTxt = MIM.displayText());
-			drawCenteredString(matrixStack, mc.textRenderer, onlyTxt, x1 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1, colorPack(255,255,255,192));
+			drawCenteredText(matrixStack, mc.textRenderer, onlyTxt, x1 + (mc.textRenderer.getWidth(sneakTxt) / 2), sneaky1, colorPack(255,255,255,192));
 		}
 	}
 

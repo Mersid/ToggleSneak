@@ -3,7 +3,7 @@ package net.mersid.togglesneak;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.math.Vec3d;
 
@@ -52,7 +52,7 @@ public class InputModded extends Input {
 				if (sneakWasPressed == 0) {
 					if (sneaking) {
 						sneakWasPressed = -1;
-					} else if (player.isRiding() || player.abilities.flying) {
+					} else if (player.isRiding() || player.getAbilities().flying) {
 						sneakWasPressed = ZTS.configuration.keyHoldTicks + 1;
 					} else {
 						sneakWasPressed = 1;
@@ -79,7 +79,7 @@ public class InputModded extends Input {
 				if (sprintWasPressed == 0) {
 					if (sprint) {
 						sprintWasPressed = -1;
-					} else if (player.abilities.flying) {
+					} else if (player.getAbilities().flying) {
 						sprintWasPressed = ZTS.configuration.keyHoldTicks + 1;
 					} else {
 						sprintWasPressed = 1;
@@ -104,13 +104,13 @@ public class InputModded extends Input {
 		if (sprint && movementForward == 1.0F && player.isOnGround() && !player.isUsingItem()
 				&& !player.hasStatusEffect(StatusEffects.BLINDNESS)) player.setSprinting(true);
 
-		if (ZTS.configuration.flyBoost && player.abilities.creativeMode && player.abilities.flying
+		if (ZTS.configuration.flyBoost && player.getAbilities().creativeMode && player.getAbilities().flying
 				&& (mc.getCameraEntity() == player) && sprint) {
 
-			if (originalFlySpeed < 0.0F || this.player.abilities.getFlySpeed() != boostedFlySpeed)
-				originalFlySpeed = this.player.abilities.getFlySpeed();
+			if (originalFlySpeed < 0.0F || this.player.getAbilities().getFlySpeed() != boostedFlySpeed)
+				originalFlySpeed = this.player.getAbilities().getFlySpeed();
 			boostedFlySpeed = originalFlySpeed * (float)ZTS.configuration.flyBoostFactor;
-			player.abilities.setFlySpeed(boostedFlySpeed);
+			player.getAbilities().setFlySpeed(boostedFlySpeed);
 
 			Vec3d motion = player.getVelocity();
 			if (sneaking)
@@ -123,8 +123,8 @@ public class InputModded extends Input {
 			}
 
 		} else {
-			if (player.abilities.getFlySpeed() == boostedFlySpeed)
-				this.player.abilities.setFlySpeed(originalFlySpeed);
+			if (player.getAbilities().getFlySpeed() == boostedFlySpeed)
+				this.player.getAbilities().setFlySpeed(originalFlySpeed);
 			originalFlySpeed = -1.0F;
 		}
 	}
@@ -137,7 +137,7 @@ public class InputModded extends Input {
 
 		String displayText = "";
 		this.gameOptions = mc.options;
-		boolean isFlying = mc.player.abilities.flying;
+		boolean isFlying = mc.player.getAbilities().flying;
 		boolean isRiding = mc.player.isRiding();
 		boolean isHoldingSneak = gameOptions.keySneak.isPressed();
 		boolean isHoldingSprint = gameOptions.keySprint.isPressed();
