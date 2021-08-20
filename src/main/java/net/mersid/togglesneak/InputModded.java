@@ -79,9 +79,9 @@ public class InputModded extends Input {
 				if (sprintWasPressed == 0) {
 					if (sprint) {
 						sprintWasPressed = -1;
-					} else if (player.getAbilities().flying) {
+					} /*else if (player.getAbilities().flying) { <-- Deleting this allows toggle sprint whilst flying
 						sprintWasPressed = ZTS.configuration.keyHoldTicks + 1;
-					} else {
+					}*/ else {
 						sprintWasPressed = 1;
 					}
 					sprint = !sprint;
