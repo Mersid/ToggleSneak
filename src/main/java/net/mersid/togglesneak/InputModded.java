@@ -32,7 +32,7 @@ public class InputModded extends Input {
 
 
 	@Override
-	public void tick(boolean slow)
+	public void tick(boolean slow, float f)
 	{
 		player = mc.player;
 		movementSideways = 0.0F;
@@ -40,15 +40,15 @@ public class InputModded extends Input {
 
 		this.gameOptions = mc.options;
 
-		if (this.pressingForward = gameOptions.keyForward.isPressed()) movementForward++;
-		if (this.pressingBack = gameOptions.keyBack.isPressed()) movementForward--;
-		if (this.pressingLeft = gameOptions.keyLeft.isPressed()) movementSideways++;
-		if (this.pressingRight = gameOptions.keyRight.isPressed()) movementSideways--;
+		if (this.pressingForward = gameOptions.forwardKey.isPressed()) movementForward++;
+		if (this.pressingBack = gameOptions.backKey.isPressed()) movementForward--;
+		if (this.pressingLeft = gameOptions.leftKey.isPressed()) movementSideways++;
+		if (this.pressingRight = gameOptions.rightKey.isPressed()) movementSideways--;
 
-		jumping = gameOptions.keyJump.isPressed();
+		jumping = gameOptions.jumpKey.isPressed();
 
 		if (ZTS.configuration.toggleSneak) {
-			if (gameOptions.keySneak.isPressed()) {
+			if (gameOptions.sneakKey.isPressed()) {
 				if (sneakWasPressed == 0) {
 					if (sneaking) {
 						sneakWasPressed = -1;
@@ -66,7 +66,7 @@ public class InputModded extends Input {
 				sneakWasPressed = 0;
 			}
 		} else {
-			sneaking = gameOptions.keySneak.isPressed();
+			sneaking = gameOptions.sneakKey.isPressed();
 		}
 
 		if (sneaking) {
@@ -75,7 +75,7 @@ public class InputModded extends Input {
 		}
 
 		if (ZTS.configuration.toggleSprint) {
-			if (gameOptions.keySprint.isPressed()) {
+			if (gameOptions.sprintKey.isPressed()) {
 				if (sprintWasPressed == 0) {
 					if (sprint) {
 						sprintWasPressed = -1;
@@ -139,8 +139,8 @@ public class InputModded extends Input {
 		this.gameOptions = mc.options;
 		boolean isFlying = mc.player.getAbilities().flying;
 		boolean isRiding = mc.player.isRiding();
-		boolean isHoldingSneak = gameOptions.keySneak.isPressed();
-		boolean isHoldingSprint = gameOptions.keySprint.isPressed();
+		boolean isHoldingSneak = gameOptions.sneakKey.isPressed();
+		boolean isHoldingSprint = gameOptions.sprintKey.isPressed();
 
 		if (isFlying) {
 			if (originalFlySpeed > 0.0F) {

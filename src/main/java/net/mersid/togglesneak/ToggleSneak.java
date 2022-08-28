@@ -3,6 +3,7 @@ package net.mersid.togglesneak;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.mersid.togglesneak.callbacks.OnTickCallback;
 import net.mersid.togglesneak.config.Configuration;
 import net.minecraft.client.MinecraftClient;
